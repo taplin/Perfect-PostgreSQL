@@ -19,6 +19,9 @@
 
 import Foundation
 import libpq
+import Logging
+
+private let logger = Logger(label: "perfect.postgresql")
 
 /// This enum type indicates an exception when dealing with a PostgreSQL database
 public enum PostgreSQLError: Error, Sendable {
@@ -103,7 +106,7 @@ public final class PGResult: @unchecked Sendable {
 		case PGRES_SINGLE_TUPLE.rawValue:
 			return .singleTuple
 		default:
-			print("Unhandled PQresult status type \(s.rawValue)")
+			logger.warning("unhandled PQresult status type \(s.rawValue)")
 		}
 		return .unknown
 	}

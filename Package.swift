@@ -9,6 +9,7 @@ let package = Package(
     ],
     dependencies: [
         .package(path: "../Perfect-CRUD"),
+        .package(url: "https://github.com/apple/swift-log.git", from: "1.5.0"),
     ],
     targets: [
         .systemLibrary(
@@ -23,6 +24,7 @@ let package = Package(
             name: "PerfectPostgreSQL",
             dependencies: [
                 .product(name: "PerfectCRUD", package: "Perfect-CRUD"),
+                .product(name: "Logging", package: "swift-log"),
                 "libpq",
             ],
             swiftSettings: [.swiftLanguageMode(.v6)]
